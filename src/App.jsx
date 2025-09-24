@@ -1,12 +1,25 @@
-import './App.css'
+import React from "react"
+import ThemeToggle from "./components/ThemeToggle.jsx"
+import Login from "./components/Login.jsx"
 
-function App() {
-
+export default function App(){
   return (
-    <h1 class="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div className="container">
+      <header className="header">
+        <div className="brand">
+          <div className="logo">🐱</div>
+          <div>Cashvelo</div>
+        </div>
+        <ThemeToggle/>
+      </header>
+
+      <main className="main">
+        <Login/>
+      </main>
+
+      <footer className="footer">
+        © {new Date().getFullYear()} Cashvelo
+      </footer>
+    </div>
   )
 }
-
-export default App
