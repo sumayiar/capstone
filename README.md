@@ -1,21 +1,22 @@
-# CASHVELO CAPSTONE
+# Cashvelo Login Demo (React + Vite)
 
-Cashvelo 💰🐈
-Cashvelo is a budgeting application designed to help people build strong financial habits and take control of their money. 
-Our goal is to make budgeting simple, practical, and empowering so that anyone can stay on track with their financial goals.
+A cat‑themed login screen with **light/dark mode**, built with React and handcrafted CSS variables (no Tailwind required).
 
+## Run it
+```bash
+npm install
+npm run dev
+# open the printed localhost URL
+```
 
-🚀 Features
-Smart Budgeting – Organize your money into categories that matter most.
-Financial Insights – Visualize your spending patterns with charts and summaries.
-Savings Goals – Track your progress toward personal financial milestones.
-User-Friendly Design – Clean and intuitive interface for stress-free budgeting.
-Cross-Platform Ready – Built with scalability in mind for web and mobile.
+## Build
+```bash
+npm run build
+npm run preview
+```
 
-
-🛠️ Tech Stack
-Frontend: React
-Backend: Node.js + Express
-Database: MySQL (via Prisma ORM)
-Charts & Visualization: Recharts
-Design & Prototyping: Figma
+## What’s inside?
+- Accessible form (labels, focus states, alerts)
+- Password show/hide, remember‑me
+- Theme toggle (persists to localStorage & respects OS preference)
+- Cozy cat coin illustration 😺
