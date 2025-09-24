@@ -1,25 +1,32 @@
-import React from "react"
-import ThemeToggle from "./components/ThemeToggle.jsx"
+import React, { useState } from "react"
+import HomePage from "./components/HomePage.jsx"
 import Login from "./components/Login.jsx"
+import ThemeToggle from "./components/ThemeToggle.jsx"
 
 export default function App(){
-  return (
-    <div className="container">
-      <header className="header">
-        <div className="brand">
-          <div className="logo">🐱</div>
-          <div>Cashvelo</div>
-        </div>
-        <ThemeToggle/>
-      </header>
+  const [currentPage, setCurrentPage] = useState('home')
 
-      <main className="main">
-        <Login/>
-      </main>
+  if (currentPage === 'login') {
+    return (
+      <div className="container">
+        <header className="header">
+          <div className="brand">
+            <div className="logo">🐱</div>
+            <div>Cashvelo</div>
+          </div>
+          <ThemeToggle/>
+        </header>
 
-      <footer className="footer">
-        © {new Date().getFullYear()} Cashvelo
-      </footer>
-    </div>
-  )
+        <main className="main">
+          <Login setCurrentPage={setCurrentPage} />
+        </main>
+
+        <footer className="footer">
+          © {new Date().getFullYear()} Cashvelo
+        </footer>
+      </div>
+    )
+  }
+  
+  return <HomePage setCurrentPage={setCurrentPage} />
 }

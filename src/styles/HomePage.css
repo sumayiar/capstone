@@ -1,0 +1,144 @@
+.page-container {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.navbar {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.nav-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem 1rem;
+}
+
+.nav-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.brand-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 14px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.nav-link:hover {
+  color: var(--primary-600);
+  background: rgba(127, 127, 127, 0.08);
+}
+
+.main-content {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.create-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  color: white;
+  padding: 1rem 3rem;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.create-btn:hover {
+  filter: brightness(1.05);
+}
+
+.create-btn:focus {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.description {
+  color: var(--text);
+  font-size: 1.125rem;
+  line-height: 1.75;
+  max-width: 48rem;
+  margin: 0 auto;
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+
+.link {
+  color: #4b5563;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.link:hover {
+  color: #1f2937;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.dark .link {
+  color: #d1d5db;
+}
+
+.dark .link:hover {
+  color: #f3f4f6;
+  background-color: rgba(55, 65, 81, 0.5);
+}
