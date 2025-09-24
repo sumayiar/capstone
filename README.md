@@ -1,8 +1,9 @@
-# capstone
+# CASHVELO CAPSTONE
 
 Cashvelo 💰🐈
 Cashvelo is a budgeting application designed to help people build strong financial habits and take control of their money. 
 Our goal is to make budgeting simple, practical, and empowering so that anyone can stay on track with their financial goals.
+
 
 🚀 Features
 Smart Budgeting – Organize your money into categories that matter most.
@@ -10,6 +11,7 @@ Financial Insights – Visualize your spending patterns with charts and summarie
 Savings Goals – Track your progress toward personal financial milestones.
 User-Friendly Design – Clean and intuitive interface for stress-free budgeting.
 Cross-Platform Ready – Built with scalability in mind for web and mobile.
+
 
 🛠️ Tech Stack
 Frontend: React
