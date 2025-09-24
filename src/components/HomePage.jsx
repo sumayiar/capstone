@@ -42,7 +42,7 @@ export default function HomePage({ setCurrentPage }) {
           What is Cashvelo? Cashvelo is your modern budgeting app with the goal of
           helping you become better with your money. Unlike with other online budgeting apps they just have 
           your standard ways of budegting. But with Cashvelo we use the Cash envelope system. The Cash enevelope
-          system is where ...
+          system is a popular budeting method for visualizaing and maintaining a flexible budget. 
         </p>
       </div>
     </div>

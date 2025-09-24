@@ -24,3 +24,5 @@ npm install
 npm install tailwindcss @tailwindcss/vite
 
 npm run dev
+
+Likewise for yarn
