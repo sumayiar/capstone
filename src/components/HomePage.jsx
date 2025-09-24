@@ -10,10 +10,10 @@ export default function HomePage({ setCurrentPage }) {
             <div className="logo-section">
               <img 
                 src="/cat-envelope.jpg" 
-                alt="BudgetCat Logo" 
+                alt="Cashvelo logo" 
                 className="logo-img"
               />
-              <span className="brand-name">Cashvello</span>
+              <span className="project-name">Cashvelo</span>
             </div>
             
             <div className="nav-links">
@@ -39,7 +39,10 @@ export default function HomePage({ setCurrentPage }) {
         </button>
         
         <p className="description">
-          We are creating this cash envelope budgeting app to help you...
+          What is Cashvelo? Cashvelo is your modern budgeting app with the goal of
+          helping you become better with your money. Unlike with other online budgeting apps they just have 
+          your standard ways of budegting. But with Cashvelo we use the Cash envelope system. The Cash enevelope
+          system is where ...
         </p>
       </div>
     </div>

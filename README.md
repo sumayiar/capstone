@@ -1,4 +1,4 @@
-#  Cashvelo Login
+#  Cashvelo
 
 Cashvelo 💰🐈 Cashvelo is a budgeting application designed to help people build strong financial habits and take control of their money. Our goal is to make budgeting simple, practical, and empowering so that anyone can stay on track with their financial goals.
 
@@ -15,3 +15,12 @@ Frontend: React Backend: Node.js + Express
  Charts & Visualization: Recharts 
  Design & Prototyping: Figma
 
+#   How to Setup Locally
+
+Clone the repo and then 
+
+npm install
+
+npm install tailwindcss @tailwindcss/vite
+
+npm run dev
