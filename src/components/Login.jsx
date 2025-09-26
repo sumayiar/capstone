@@ -1,16 +1,38 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import {
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult
+} from "firebase/auth"
+import { auth, googleProvider } from "../firebase"
 
-export default function Login(){
+export default function Login({ setCurrentPage }) {
   const [showPassword, setShowPassword] = useState(false)
   const [values, setValues] = useState({ email: "", password: "", remember: true })
   const [errors, setErrors] = useState({})
+  const [googleLoading, setGoogleLoading] = useState(false)
+  const [googleError, setGoogleError] = useState("")
 
-  function onChange(e){
+  // Handle Google redirect result when coming back from auth
+  useEffect(() => {
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result?.user) {
+          console.log("Signed in (redirect):", result.user)
+          setCurrentPage?.("home")
+        }
+      })
+      .catch((err) => {
+        console.error("Redirect sign-in error:", err)
+      })
+  }, [setCurrentPage])
+
+  function onChange(e) {
     const { name, value, type, checked } = e.target
-    setValues(v => ({ ...v, [name]: type === "checkbox" ? checked : value }))
+    setValues((v) => ({ ...v, [name]: type === "checkbox" ? checked : value }))
   }
 
-  function validate(){
+  function validate() {
     const next = {}
     if (!values.email.trim()) next.email = "Email is required."
     else if (!/^\S+@\S+\.\S+$/.test(values.email)) next.email = "Enter a valid email."
@@ -18,12 +40,34 @@ export default function Login(){
     return next
   }
 
-  function onSubmit(e){
+  function onSubmit(e) {
     e.preventDefault()
     const next = validate()
     setErrors(next)
-    if (Object.keys(next).length === 0){
+    if (Object.keys(next).length === 0) {
       alert(`😺 Logging in as ${values.email}${values.remember ? " (remembered)" : ""}`)
+      setCurrentPage?.("home")
+    }
+  }
+
+  async function handleGoogle() {
+    try {
+      setGoogleError("")
+      setGoogleLoading(true)
+      const result = await signInWithPopup(auth, googleProvider)
+      console.log("Signed in (popup):", result.user)
+      setCurrentPage?.("home")
+    } catch (err) {
+      const code = err?.code || ""
+      if (code === "auth/popup-blocked" || code === "auth/popup-closed-by-user") {
+        // Fallback to redirect if popup is blocked
+        await signInWithRedirect(auth, googleProvider)
+      } else {
+        setGoogleError(err?.message || "Google sign-in failed")
+        console.error("Google sign-in error:", err)
+      }
+    } finally {
+      setGoogleLoading(false)
     }
   }
 
@@ -32,15 +76,16 @@ export default function Login(){
       <div className="card-body">
         <div className="center">
           <div className="illustration" aria-hidden="true">
-            {/* Cat coin SVG */}
-        <img
-  src="/cat-envelope.jpg"
-  alt="Cat placing cash into an envelope"
-  className="cat-hero"
-/>
+            <img
+              src="/cat-envelope.jpg"
+              alt="Cat placing cash into an envelope"
+              className="cat-hero"
+            />
           </div>
           <h1>Welcome back 🐱</h1>
-          <p className="subtitle">Sign in to continue building strong financial habits with Cashvelo.</p>
+          <p className="subtitle">
+            Sign in to continue building strong financial habits with Cashvelo.
+          </p>
         </div>
 
         <form onSubmit={onSubmit} noValidate>
@@ -56,7 +101,11 @@ export default function Login(){
               onChange={onChange}
               autoComplete="email"
             />
-            {errors.email && <p className="subtitle" role="alert" style={{ color: "#dc2626" }}>{errors.email}</p>}
+            {errors.email && (
+              <p className="subtitle" role="alert" style={{ color: "#dc2626" }}>
+                {errors.email}
+              </p>
+            )}
           </div>
 
           <div className="form-group">
@@ -75,13 +124,17 @@ export default function Login(){
               <button
                 type="button"
                 className="toggle-eye"
-                onClick={() => setShowPassword(s => !s)}
+                onClick={() => setShowPassword((s) => !s)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
-            {errors.password && <p className="subtitle" role="alert" style={{ color: "#dc2626" }}>{errors.password}</p>}
+            {errors.password && (
+              <p className="subtitle" role="alert" style={{ color: "#dc2626" }}>
+                {errors.password}
+              </p>
+            )}
           </div>
 
           <div className="row">
@@ -106,9 +159,27 @@ export default function Login(){
           </div>
 
           <div className="social">
-            <button type="button">Continue with Google</button>
-            <button type="button">Continue with GitHub</button>
+            <button
+              type="button"
+              onClick={handleGoogle}
+              disabled={googleLoading}
+            >
+              {googleLoading ? "Connecting…" : "Continue with Google"}
+            </button>
+            <button type="button" disabled>
+              Continue with GitHub
+            </button>
           </div>
+
+          {googleError && (
+            <p
+              className="subtitle"
+              role="alert"
+              style={{ color: "#dc2626", marginTop: 12 }}
+            >
+              {googleError}
+            </p>
+          )}
         </form>
 
         <p className="center subtitle" style={{ marginTop: 16 }}>
