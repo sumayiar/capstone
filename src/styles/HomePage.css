@@ -142,3 +142,27 @@
   color: #f3f4f6;
   background-color: rgba(55, 65, 81, 0.5);
 }
+
+.hero-logo {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.hero-logo-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border: 3px solid #e5e7eb;
+  transition: transform 0.3s ease;
+}
+
+.hero-logo-img:hover {
+  transform: scale(1.05);
+}
+
+.dark .hero-logo-img {
+  border-color: #374151;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}

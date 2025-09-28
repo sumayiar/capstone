@@ -59,9 +59,11 @@ export default function Login({ setCurrentPage }) {
       setCurrentPage?.("home")
     } catch (err) {
       const code = err?.code || ""
-      if (code === "auth/popup-blocked" || code === "auth/popup-closed-by-user") {
+      if (code === "auth/popup-blocked") {
         // Fallback to redirect if popup is blocked
         await signInWithRedirect(auth, googleProvider)
+      } else if (code === "auth/popup-closed-by-user"){
+        setGoogleError("Sign-in was cancelled try again or a different method")
       } else {
         setGoogleError(err?.message || "Google sign-in failed")
         console.error("Google sign-in error:", err)

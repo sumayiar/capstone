@@ -34,6 +34,13 @@ export default function HomePage({ setCurrentPage }) {
       </nav>
 
       <div className="main-content">
+        <div className="hero-logo">
+          <img 
+            src="/cat-envelope.jpg" 
+            alt="Cashvelo Logo" 
+            className="hero-logo-img"
+          />
+        </div>
         <button className="create-btn">
           Create Account
         </button>

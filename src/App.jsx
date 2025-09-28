@@ -6,7 +6,7 @@ import Login from "./components/Login.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx";
 
 export default function App(){
-  const [currentPage, setCurrentPage] = useState('login'); // start on login to test
+  const [currentPage, setCurrentPage] = useState('home'); // start on login to test
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
