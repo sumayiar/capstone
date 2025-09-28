@@ -7,7 +7,7 @@ export default function HomePage({ setCurrentPage }) {
       <nav className="navbar">
         <div className="nav-container">
           <div className="nav-layout">
-            <div className="logo-section">
+            <div className="logo-section" onClick={() => setCurrentPage('home')} style={{cursor: 'pointer'}}>
               <img 
                 src="/cat-envelope.jpg" 
                 alt="Cashvelo logo" 
