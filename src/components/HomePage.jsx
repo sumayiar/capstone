@@ -7,7 +7,11 @@ export default function HomePage({ setCurrentPage }) {
       <nav className="navbar">
         <div className="nav-container">
           <div className="nav-layout">
-            <div className="logo-section" onClick={() => setCurrentPage('home')} style={{cursor: 'pointer'}}>
+            <div 
+              className="logo-section" 
+              onClick={() => setCurrentPage('home')} 
+              style={{cursor: 'pointer'}}
+            >
               <img 
                 src="/cat-envelope.jpg" 
                 alt="Cashvelo logo" 
@@ -26,7 +30,13 @@ export default function HomePage({ setCurrentPage }) {
               >
                 Login
               </button>
-              <a href="#" className="nav-link">Sign Up</a>
+              <a 
+                href="#" 
+                className="nav-link"
+                onClick={(e) => { e.preventDefault(); setCurrentPage('signup'); }}
+              >
+                Sign Up
+              </a>
               <ThemeToggle />
             </div>
           </div>
@@ -41,7 +51,10 @@ export default function HomePage({ setCurrentPage }) {
             className="hero-logo-img"
           />
         </div>
-        <button className="create-btn">
+        <button 
+          className="create-btn"
+          onClick={() => setCurrentPage('signup')}
+        >
           Create Account
         </button>
         
