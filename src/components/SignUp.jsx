@@ -15,36 +15,55 @@ export default function SignUp({ onSuccess }) {
     e.preventDefault()
     setError("")
 
-    if (!email || !password || !confirm) {
+    if(!email || !password || !confirm){
       setError("Please fill in all required fields.")
       return
     }
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters.")
+    if(password.length < 6){
+      setError("Password must be at least 6 characters")
       return
     }
-    if (password !== confirm) {
-      setError("Passwords do not match.")
-      return
+    if(password != confirm){
+      setError("Password do not match.")
     }
-
     try {
       setLoading(true)
-      const cred = await createUserWithEmailAndPassword(auth, email.trim(), password)
-      if (name.trim()) {
-        await updateProfile(cred.user, { displayName: name.trim() })
+      
+      // Call your Express backend
+      const response = await fetch(`${API_URL}/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          username: name.trim() || email.split('@')[0], // Use name or email prefix as username
+          email: email.trim(), 
+          password 
+        })
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        // Store authentication info
+        localStorage.setItem('authMethod', 'express')
+        localStorage.setItem('authToken', data.token)
+        localStorage.setItem('user', JSON.stringify(data.user))
+        
+        console.log("Signed up successfully:", data.user)
+        
+        // Call success callback
+        if (typeof onSuccess === "function") {
+          onSuccess(data.user)
+        }
+      } else {
+        // Handle backend errors
+        setError(data.error || "Something went wrong. Please try again.")
       }
-      if (typeof onSuccess === "function") onSuccess(cred.user)
+      
     } catch (err) {
-      const msg =
-        err?.code === "auth/email-already-in-use"
-          ? "An account with this email already exists."
-          : err?.code === "auth/invalid-email"
-          ? "Please enter a valid email address."
-          : err?.code === "auth/weak-password"
-          ? "Your password is too weak."
-          : err?.message || "Something went wrong. Please try again."
-      setError(msg)
+      console.error("Signup error:", err)
+      setError("Unable to connect to server. Please try again.")
     } finally {
       setLoading(false)
     }
