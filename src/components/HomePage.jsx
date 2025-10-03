@@ -19,13 +19,16 @@ export default function HomePage({ setCurrentPage }) {
       <nav className="navbar">
         <div className="nav-container">
           <div className="nav-layout">
-            <div
-              className="logo-section"
-              onClick={() => setCurrentPage('home')}
-              style={{ cursor: 'pointer' }}
-              aria-label="Cashvelo home"
+            <div 
+              className="logo-section" 
+              onClick={() => setCurrentPage('home')} 
+              style={{cursor: 'pointer'}}
             >
-              <img src="/cat-envelope.jpg" alt="Cashvelo logo" className="logo-img" />
+              <img 
+                src="/cat-envelope.jpg" 
+                alt="Cashvelo logo" 
+                className="logo-img"
+              />
               <span className="project-name">Cashvelo</span>
             </div>
 
@@ -48,11 +51,14 @@ export default function HomePage({ setCurrentPage }) {
               >
                 Create free account
               </button>
-
-              {/* Clean pill-styled theme toggle */}
-              <div className="theme-toggle-wrap">
-                <ThemeToggle />
-              </div>
+              <a 
+                href="#" 
+                className="nav-link"
+                onClick={(e) => { e.preventDefault(); setCurrentPage('signup'); }}
+              >
+                Sign Up
+              </a>
+              <ThemeToggle />
             </div>
           </div>
         </div>
@@ -128,7 +134,13 @@ export default function HomePage({ setCurrentPage }) {
           <span className="chip">Envelope budgeting</span>
           <span className="chip">Clear insights</span>
         </div>
-
+        <button 
+          className="create-btn"
+          onClick={() => setCurrentPage('signup')}
+        >
+          Create Account
+        </button>
+        
         <p className="description">
           Cashvelo uses the <strong>cash envelope system</strong>—a visual method for setting limits,
           tracking spending, and keeping momentum month to month.
