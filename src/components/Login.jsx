@@ -6,12 +6,15 @@ import {
 } from "firebase/auth"
 import { auth, googleProvider } from "../firebase"
 
+const API_URL = "http://localhost:3000/api"
+
 export default function Login({ setCurrentPage }) {
   const [showPassword, setShowPassword] = useState(false)
   const [values, setValues] = useState({ email: "", password: "", remember: true })
   const [errors, setErrors] = useState({})
   const [googleLoading, setGoogleLoading] = useState(false)
   const [googleError, setGoogleError] = useState("")
+  const [loginLoading, setLoginLoading] = useState(false)
 
   // Handle Google redirect result when coming back from auth
   useEffect(() => {
@@ -19,6 +22,12 @@ export default function Login({ setCurrentPage }) {
       .then((result) => {
         if (result?.user) {
           console.log("Signed in (redirect):", result.user)
+          localStorage.setItem('authMethod', 'google')
+          localStorage.setItem('user', JSON.stringify({
+            id: result.user.uid,
+            email: result.user.email,
+            username: result.user.displayName
+          }))
           setCurrentPage?.("home")
         }
       })
@@ -30,6 +39,10 @@ export default function Login({ setCurrentPage }) {
   function onChange(e) {
     const { name, value, type, checked } = e.target
     setValues((v) => ({ ...v, [name]: type === "checkbox" ? checked : value }))
+
+    if(errors[name]){
+      setErrors((prev) => ({ ...prev, [name]: "" }))
+    }
   }
 
   function validate() {
@@ -40,22 +53,64 @@ export default function Login({ setCurrentPage }) {
     return next
   }
 
-  function onSubmit(e) {
+  async function onSubmit(e){
     e.preventDefault()
     const next = validate()
     setErrors(next)
-    if (Object.keys(next).length === 0) {
-      alert(`😺 Logging in as ${values.email}${values.remember ? " (remembered)" : ""}`)
-      setCurrentPage?.("home")
+
+    if(Object.keys(next).length === 0){
+      try{
+        setLoginLoading(true)
+        setErrors({})
+
+        const response = await fetch(`${API_URL}/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: values.email.trim(),
+            password: values.password
+          })
+        })
+
+        const data = await response.json()
+
+        if(response.ok){
+          localStorage.setItem('authMethod', 'express')
+          localStorage.setItem('authToken', data.token)
+          localStorage.setItem('user', JSON.stringify(data.user))
+
+          console.log("Logged in successfully:", data.user)
+          setCurrentPage?.("home")
+        } else {
+          setErrors({ email: data.error || "Login failed" })
+        }
+
+      } catch (err) {
+        console.error("Login error:", err)
+        setErrors({ email: "Unable to connect to server. Please try again." })
+      } finally {
+        setLoginLoading(false)
+      }
     }
   }
 
-  async function handleGoogle() {
+async function handleGoogle() {
     try {
       setGoogleError("")
       setGoogleLoading(true)
       const result = await signInWithPopup(auth, googleProvider)
       console.log("Signed in (popup):", result.user)
+      
+      // Store Google user info
+      localStorage.setItem('authMethod', 'google')
+      localStorage.setItem('user', JSON.stringify({
+        id: result.user.uid,
+        email: result.user.email,
+        username: result.user.displayName
+      }))
+      
       setCurrentPage?.("home")
     } catch (err) {
       const code = err?.code || ""
@@ -63,7 +118,7 @@ export default function Login({ setCurrentPage }) {
         // Fallback to redirect if popup is blocked
         await signInWithRedirect(auth, googleProvider)
       } else if (code === "auth/popup-closed-by-user"){
-        setGoogleError("Sign-in was cancelled try again or a different method")
+        setGoogleError("Sign-in was cancelled - try again or use a different method")
       } else {
         setGoogleError(err?.message || "Google sign-in failed")
         console.error("Google sign-in error:", err)
@@ -152,7 +207,7 @@ export default function Login({ setCurrentPage }) {
             <a className="link" href="#">Forgot password?</a>
           </div>
 
-          <button type="submit" className="btn">Sign in</button>
+          <button type="submit" className="btn">Log in</button>
 
           <div className="divider" aria-hidden="true">
             <div className="line"></div>

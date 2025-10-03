@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { auth } from "../firebase"
 
+const API_URL = "http://localhost:3000/api"
+
 export default function SignUp({ onSuccess }) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -25,6 +27,7 @@ export default function SignUp({ onSuccess }) {
     }
     if(password != confirm){
       setError("Password do not match.")
+      return
     }
     try {
       setLoading(true)
