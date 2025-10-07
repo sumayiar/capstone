@@ -5,51 +5,51 @@ import HomePage from "./components/HomePage.jsx";
 import Login from "./components/Login.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx";
 import SignUp from "./components/SignUp.jsx";
+import QuestionnairePage from "./pages/QuestionnairePage.jsx"; // ✅ import the new page
 
-export default function App(){
-  const [currentPage, setCurrentPage] = useState('home'); // start on login to test
+export default function App() {
+  const [currentPage, setCurrentPage] = useState("home"); // can be 'home', 'login', 'signup', 'questionnaire'
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      if (user) setCurrentPage('home');       // logged in → Home
-      else setCurrentPage((p) => p ?? 'login'); // logged out → Login (safety)
+      if (user) setCurrentPage("home"); // logged in → Home
+      else setCurrentPage((p) => p ?? "login"); // logged out → Login
     });
     return unsub;
   }, []);
 
-  if (currentPage === 'signup') {
+  // --- Sign Up Page ---
+  if (currentPage === "signup") {
     return (
       <div className="container">
         <header className="header">
           <div
             className="brand"
-            style={{ cursor: 'pointer' }}
-            onClick={() => setCurrentPage('home')}
+            style={{ cursor: "pointer" }}
+            onClick={() => setCurrentPage("home")}
           >
-            {/* replaced emoji with the same image logo used on HomePage */}
             <img
               src="/cat-envelope.jpg"
               alt="Cashvelo logo"
               className="logo-img"
-              style={{ height: '40px', width: '40px', borderRadius: '8px' }}
+              style={{ height: "40px", width: "40px", borderRadius: "8px" }}
             />
             <div>Cashvelo</div>
           </div>
-          <ThemeToggle/>
+          <ThemeToggle />
         </header>
 
         <main className="main">
           <SignUp setCurrentPage={setCurrentPage} />
         </main>
 
-        <footer className="footer">
-          © {new Date().getFullYear()} Cashvelo
-        </footer>
+        <footer className="footer">© {new Date().getFullYear()} Cashvelo</footer>
       </div>
     );
   }
 
-  if (currentPage === 'login') {
+  // --- Login Page ---
+  if (currentPage === "login") {
     return (
       <div className="container">
         <header className="header">
@@ -57,19 +57,23 @@ export default function App(){
             <div className="logo">🐱</div>
             <div>Cashvelo</div>
           </div>
-          <ThemeToggle/>
+          <ThemeToggle />
         </header>
 
         <main className="main">
           <Login setCurrentPage={setCurrentPage} />
         </main>
 
-        <footer className="footer">
-          © {new Date().getFullYear()} Cashvelo
-        </footer>
+        <footer className="footer">© {new Date().getFullYear()} Cashvelo</footer>
       </div>
     );
   }
 
+  // --- Questionnaire Page ---
+  if (currentPage === "questionnaire") {
+    return <QuestionnairePage setCurrentPage={setCurrentPage} />;
+  }
+
+  // --- Home Page ---
   return <HomePage setCurrentPage={setCurrentPage} />;
 }
