@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
-import HomePage from "./components/HomePage.jsx";
-import Login from "./components/Login.jsx";
-import ThemeToggle from "./components/ThemeToggle.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import Login from "./pages/Login.jsx";
+import ThemeToggle from "./components/ThemeToggle.jsx"; 
 import SignUp from "./components/SignUp.jsx";
 import QuestionnairePage from "./pages/QuestionnairePage.jsx"; // ✅ import the new page
 
