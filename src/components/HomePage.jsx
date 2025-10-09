@@ -46,10 +46,10 @@ export default function HomePage({ setCurrentPage }) {
                 onClick={() => setCurrentPage('signup')}
                 aria-label="Create free account"
               >
-                Create free account
+                Create account
               </button>
 
-              {/* Clean pill-styled theme toggle */}
+              {/* Keep the real ThemeToggle; styled to show a clean “Theme” pill */}
               <div className="theme-toggle-wrap">
                 <ThemeToggle />
               </div>
@@ -61,13 +61,11 @@ export default function HomePage({ setCurrentPage }) {
       {/* HERO */}
       <header className="main-content">
         <div className="hero-grid">
-          {/* Copy */}
           <div className="hero-copy">
-            <div className="hero-badge">Free forever • No subscriptions</div>
-            <h1 className="hero-title">Budget beautifully. Spend confidently.</h1>
+            <h1 className="hero-title">Budget beautifully.<br />Spend confidently.</h1>
             <p className="hero-subtitle">
-              Cashvelo turns your income into simple envelopes, gives you crystal-clear insights,
-              and helps you stay consistent—without spreadsheets or stress.
+              Cashvelo turns your income into simple envelopes, gives you crystal clear insights,
+              and helps you stay consistent without spreadsheets or stress.
             </p>
 
             <div className="hero-actions">
@@ -83,12 +81,6 @@ export default function HomePage({ setCurrentPage }) {
                 See a live demo
               </button>
             </div>
-
-            <ul className="trust-points">
-              <li>No ads • no selling data</li>
-              <li>Works offline-first</li>
-              <li>Import from CSV in one click</li>
-            </ul>
           </div>
 
           {/* Demo Card */}
@@ -116,21 +108,20 @@ export default function HomePage({ setCurrentPage }) {
             </div>
 
             <div className="demo-insights">
-              <div className="insight">Month-to-date: <strong>$1,284</strong> tracked</div>
-              <div className="insight">Safe-to-spend: <strong>$412</strong></div>
+              <div className="insight">Month to date: <strong>$1,284</strong> tracked</div>
+              <div className="insight">Safe to spend: <strong>$412</strong></div>
               <div className="insight">Upcoming: <strong>$96</strong> in 5 days</div>
             </div>
           </div>
         </div>
 
         <div className="badges">
-          <span className="chip">Free forever</span>
           <span className="chip">Envelope budgeting</span>
           <span className="chip">Clear insights</span>
         </div>
 
         <p className="description">
-          Cashvelo uses the <strong>cash envelope system</strong>—a visual method for setting limits,
+          Cashvelo uses the <strong>cash envelope system</strong>, a visual method for setting limits,
           tracking spending, and keeping momentum month to month.
         </p>
       </header>
@@ -153,28 +144,28 @@ export default function HomePage({ setCurrentPage }) {
               <div className="img-placeholder">Insert image</div>
               <div>
                 <h3>Track without friction</h3>
-                <p>Log spending in seconds, import bank CSVs, and let rules auto-tag transactions.</p>
+                <p>Log spending in seconds, import bank CSVs, and let rules auto tag transactions.</p>
               </div>
             </li>
             <li>
               <div className="img-placeholder">Insert image</div>
               <div>
                 <h3>Protect your plan</h3>
-                <p>See safe-to-spend at a glance, get nudges before you overshoot, and roll leftovers to savings.</p>
+                <p>See safe to spend at a glance, get nudges before you overshoot, and roll leftovers to savings.</p>
               </div>
             </li>
           </ol>
         </div>
       </section>
 
-      {/* FEATURES (image cards) */}
+      {/* FEATURES */}
       <section id="features" className="feature-band">
         <div className="about-inner feature-grid">
           {[
-            { title: 'Goals that feel doable', copy: 'Targets for travel, emergency fund, or debt payoff—broken into weekly bites.' },
-            { title: 'Delightfully fast', copy: 'Zero-lag UI and offline-first so your budget is ready the moment you open the app.' },
+            { title: 'Goals that feel doable', copy: 'Targets for travel, emergency fund, or debt payoff broken into weekly bites.' },
+            { title: 'Delightfully fast', copy: 'Zero lag UI and offline first so your budget is ready the moment you open the app.' },
             { title: 'Private by design', copy: 'Your data stays on your device with optional encrypted backup. No selling data.' },
-            { title: 'Gentle reminders', copy: 'Notifications arrive at the right moment—after a purchase or before a bill.' },
+            { title: 'Gentle reminders', copy: 'Notifications arrive at the right moment, after a purchase or before a bill.' },
           ].map((f) => (
             <article className="feature-card feature-with-image" key={f.title}>
               <div className="feature-img img-placeholder">Insert image</div>
@@ -187,14 +178,14 @@ export default function HomePage({ setCurrentPage }) {
         </div>
       </section>
 
-      {/* WHY (no reviews) */}
+      {/* WHY */}
       <section id="why" className="about">
         <div className="about-inner">
           <h2 className="section-title">Why people stick with Cashvelo</h2>
         </div>
         <ul className="why-list">
           <li>Visual envelope system that clicks instantly</li>
-          <li>Clear safe-to-spend so decisions feel easy</li>
+          <li>Clear safe to spend so decisions feel easy</li>
           <li>Rollovers keep momentum month to month</li>
           <li>Works great solo or with a partner</li>
         </ul>
@@ -205,7 +196,7 @@ export default function HomePage({ setCurrentPage }) {
         <div className="cta-inner">
           <div>
             <h3 className="cta-title">Ready to feel in control of money?</h3>
-            <p className="cta-sub">Free forever. No subscriptions.</p>
+            <p className="cta-sub">Get started in minutes.</p>
           </div>
           <div className="hero-actions cta-actions">
             <button className="create-btn" onClick={() => setCurrentPage('signup')}>Create account</button>
