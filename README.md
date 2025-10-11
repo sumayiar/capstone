@@ -26,3 +26,5 @@ npm install tailwindcss @tailwindcss/vite
 npm run dev
 
 Likewise for yarn
+
+Link to backend repo: https://github.com/lc6003/capstone-backend
