@@ -5,7 +5,7 @@ export default function Navbar({ setCurrentPage }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-transparent backdrop-blur-md text-white px-6 py-4 flex justify-between items-center border-b border-white/10">
+    <nav className="relative bg-transparent backdrop-blur-md text-white px-6 py-4 flex justify-between items-center border-b border-white/10">
       {/* Logo */}
       <div
         className="flex items-center space-x-2 cursor-pointer"
@@ -19,15 +19,24 @@ export default function Navbar({ setCurrentPage }) {
         <span className="text-xl font-semibold">Cashvelo</span>
       </div>
 
-      {/* Links */}
+      {/* Desktop Links */}
       <div className="hidden md:flex items-center space-x-6 text-sm font-medium">
-        <button onClick={() => setCurrentPage("home")} className="hover:text-purple-400 transition">
+        <button
+          onClick={() => setCurrentPage("home")}
+          className="hover:text-purple-400 transition"
+        >
           Home
         </button>
-        <button onClick={() => setCurrentPage("signup")} className="hover:text-purple-400 transition">
+        <button
+          onClick={() => setCurrentPage("signup")}
+          className="hover:text-purple-400 transition"
+        >
           Sign Up
         </button>
-        <button onClick={() => setCurrentPage("login")} className="hover:text-purple-400 transition">
+        <button
+          onClick={() => setCurrentPage("login")}
+          className="hover:text-purple-400 transition"
+        >
           Login
         </button>
         <ThemeToggle />
@@ -56,14 +65,32 @@ export default function Navbar({ setCurrentPage }) {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="absolute top-16 right-6 bg-black/90 border border-white/10 rounded-xl p-4 flex flex-col space-y-3 w-40 md:hidden">
-          <button onClick={() => setCurrentPage("home")} className="hover:text-purple-400 transition">
+        <div className="absolute top-full right-6 z-50 bg-black/90 border border-white/10 rounded-xl p-4 flex flex-col space-y-3 w-48 md:hidden">
+          <button
+            onClick={() => {
+              setCurrentPage("home");
+              setIsOpen(false);
+            }}
+            className="hover:text-purple-400 transition text-left"
+          >
             Home
           </button>
-          <button onClick={() => setCurrentPage("signup")} className="hover:text-purple-400 transition">
+          <button
+            onClick={() => {
+              setCurrentPage("signup");
+              setIsOpen(false);
+            }}
+            className="hover:text-purple-400 transition text-left"
+          >
             Sign Up
           </button>
-          <button onClick={() => setCurrentPage("login")} className="hover:text-purple-400 transition">
+          <button
+            onClick={() => {
+              setCurrentPage("login");
+              setIsOpen(false);
+            }}
+            className="hover:text-purple-400 transition text-left"
+          >
             Login
           </button>
           <ThemeToggle />
