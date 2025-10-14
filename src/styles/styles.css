@@ -59,6 +59,28 @@ body{
   letter-spacing: .2px;
 }
 
+/* Updated navbar styling */
+.header .flex {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2rem !important; /* space-x-8 equivalent */
+}
+
+.header button {
+  padding: 0.5rem 0.75rem !important; /* px-3 py-2 */
+  border-radius: 0.375rem !important; /* rounded-md */
+  transition: all 0.2s !important;
+  font-size: 0.875rem !important; /* text-sm */
+  font-weight: 500 !important; /* font-medium */
+}
+
+.header button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* hover:bg-white/10 */
+  color: #a855f7 !important; /* hover:text-purple-400 */
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
 .brand .logo{
   height: 40px;
   width: 40px;
@@ -226,3 +248,4 @@ html.dark .input{
   color: var(--muted);
   font-size: 13px;
 }
+/* Cache buster Tue Oct 14 18:34:37 EDT 2025 */

@@ -28,15 +28,35 @@ export default function App() {
             style={{ cursor: "pointer" }}
             onClick={() => setCurrentPage("home")}
           >
-            <img
-              src="/cat-envelope.jpg"
-              alt="Cashvelo logo"
-              className="logo-img"
-              style={{ height: "40px", width: "40px", borderRadius: "8px" }}
-            />
             <div>Cashvelo</div>
           </div>
-          <ThemeToggle />
+          <div className="flex" style={{ gap: '2rem', alignItems: 'center' }}>
+            <button 
+              onClick={() => setCurrentPage("home")}
+              style={{ 
+                padding: '0.5rem 0.75rem', 
+                borderRadius: '0.375rem',
+                transition: 'all 0.2s',
+                fontSize: '0.875rem',
+                fontWeight: '500'
+              }}
+            >
+              Home
+            </button>
+            <button 
+              onClick={() => setCurrentPage("login")}
+              style={{ 
+                padding: '0.5rem 0.75rem', 
+                borderRadius: '0.375rem',
+                transition: 'all 0.2s',
+                fontSize: '0.875rem',
+                fontWeight: '500'
+              }}
+            >
+              Login
+            </button>
+            <ThemeToggle />
+          </div>
         </header>
 
         <main className="main">
@@ -53,11 +73,40 @@ export default function App() {
     return (
       <div className="container">
         <header className="header">
-          <div className="brand">
-            <div className="logo">🐱</div>
+          <div
+            className="brand"
+            style={{ cursor: "pointer" }}
+            onClick={() => setCurrentPage("home")}
+          >
             <div>Cashvelo</div>
           </div>
-          <ThemeToggle />
+          <div className="flex" style={{ gap: '2rem', alignItems: 'center' }}>
+            <button 
+              onClick={() => setCurrentPage("home")}
+              style={{ 
+                padding: '0.5rem 0.75rem', 
+                borderRadius: '0.375rem',
+                transition: 'all 0.2s',
+                fontSize: '0.875rem',
+                fontWeight: '500'
+              }}
+            >
+              Home
+            </button>
+            <button 
+              onClick={() => setCurrentPage("signup")}
+              style={{ 
+                padding: '0.5rem 0.75rem', 
+                borderRadius: '0.375rem',
+                transition: 'all 0.2s',
+                fontSize: '0.875rem',
+                fontWeight: '500'
+              }}
+            >
+              Sign Up
+            </button>
+            <ThemeToggle />
+          </div>
         </header>
 
         <main className="main">

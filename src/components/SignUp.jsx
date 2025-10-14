@@ -4,7 +4,7 @@ import { auth } from "../firebase"
 
 const API_URL = "http://localhost:3000/api"
 
-export default function SignUp({ onSuccess }) {
+export default function SignUp({ setCurrentPage, onSuccess }) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -55,10 +55,8 @@ export default function SignUp({ onSuccess }) {
         
         console.log("Signed up successfully:", data.user)
         
-        // Call success callback
-        if (typeof onSuccess === "function") {
-          onSuccess(data.user)
-        }
+        // Navigate to home page
+        setCurrentPage?.("home")
       } else {
         // Handle backend errors
         setError(data.error || "Something went wrong. Please try again.")

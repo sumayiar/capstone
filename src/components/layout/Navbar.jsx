@@ -8,34 +8,29 @@ export default function Navbar({ setCurrentPage }) {
     <nav className="relative bg-transparent backdrop-blur-md text-white px-6 py-4 flex justify-between items-center border-b border-white/10">
       {/* Logo */}
       <div
-        className="flex items-center space-x-2 cursor-pointer"
+        className="flex items-center cursor-pointer"
         onClick={() => setCurrentPage("home")}
       >
-        <img
-          src="/images/cashcat.png"
-          alt="Cashvelo Logo"
-          className="w-8 h-8"
-        />
         <span className="text-xl font-semibold">Cashvelo</span>
       </div>
 
       {/* Desktop Links */}
-      <div className="hidden md:flex items-center space-x-6 text-sm font-medium">
+      <div className="hidden md:flex items-center space-x-8 text-sm font-medium">
         <button
           onClick={() => setCurrentPage("home")}
-          className="hover:text-purple-400 transition"
+          className="hover:text-purple-400 transition px-3 py-2 rounded-md hover:bg-white/10"
         >
           Home
         </button>
         <button
           onClick={() => setCurrentPage("signup")}
-          className="hover:text-purple-400 transition"
+          className="hover:text-purple-400 transition px-3 py-2 rounded-md hover:bg-white/10"
         >
           Sign Up
         </button>
         <button
           onClick={() => setCurrentPage("login")}
-          className="hover:text-purple-400 transition"
+          className="hover:text-purple-400 transition px-3 py-2 rounded-md hover:bg-white/10"
         >
           Login
         </button>
@@ -65,13 +60,13 @@ export default function Navbar({ setCurrentPage }) {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="absolute top-full right-6 z-50 bg-black/90 border border-white/10 rounded-xl p-4 flex flex-col space-y-3 w-48 md:hidden">
+        <div className="absolute top-full right-6 z-50 bg-black/90 border border-white/10 rounded-xl p-4 flex flex-col space-y-4 w-48 md:hidden">
           <button
             onClick={() => {
               setCurrentPage("home");
               setIsOpen(false);
             }}
-            className="hover:text-purple-400 transition text-left"
+            className="hover:text-purple-400 transition text-left px-3 py-2 rounded-md hover:bg-white/10"
           >
             Home
           </button>
@@ -80,7 +75,7 @@ export default function Navbar({ setCurrentPage }) {
               setCurrentPage("signup");
               setIsOpen(false);
             }}
-            className="hover:text-purple-400 transition text-left"
+            className="hover:text-purple-400 transition text-left px-3 py-2 rounded-md hover:bg-white/10"
           >
             Sign Up
           </button>
@@ -89,11 +84,13 @@ export default function Navbar({ setCurrentPage }) {
               setCurrentPage("login");
               setIsOpen(false);
             }}
-            className="hover:text-purple-400 transition text-left"
+            className="hover:text-purple-400 transition text-left px-3 py-2 rounded-md hover:bg-white/10"
           >
             Login
           </button>
-          <ThemeToggle />
+          <div className="px-3 py-2">
+            <ThemeToggle />
+          </div>
         </div>
       )}
     </nav>
