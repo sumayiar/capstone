@@ -6,6 +6,7 @@ import Login from "./pages/Login.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx"; 
 import SignUp from "./components/SignUp.jsx";
 import QuestionnairePage from "./pages/QuestionnairePage.jsx"; // ✅ import the new page
+import ForgotPassword from "./pages/ForgotPassword.jsx";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState("home"); // can be 'home', 'login', 'signup', 'questionnaire'
@@ -62,6 +63,27 @@ export default function App() {
 
         <main className="main">
           <Login setCurrentPage={setCurrentPage} />
+        </main>
+
+        <footer className="footer">© {new Date().getFullYear()} Cashvelo</footer>
+      </div>
+    );
+  }
+
+  // --- Forgot Password Page ---
+  if(currentPage === "forgot-password"){
+    return(
+      <div className="container">
+        <header className="header">
+          <div className="brand">
+            <div className="logo">🐱</div>
+            <div>Cashvelo</div>
+          </div>
+          <ThemeToggle />
+        </header>
+
+        <main className="main">
+          <ForgotPassword setCurrentPage={setCurrentPage} />
         </main>
 
         <footer className="footer">© {new Date().getFullYear()} Cashvelo</footer>
