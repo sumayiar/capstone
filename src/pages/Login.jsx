@@ -204,7 +204,16 @@ async function handleGoogle() {
               />
               Remember me
             </label>
-            <a className="link" href="#">Forgot password?</a>
+            <a 
+              className="link" 
+              href="#"
+              onClick={(e) => {
+                e.preventDefault()
+                setCurrentPage("forgot-password")
+              }}
+            >
+              Forgot password?
+            </a>
           </div>
 
           <button type="submit" className="btn">Log in</button>
